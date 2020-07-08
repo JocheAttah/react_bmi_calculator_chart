@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { v4 as  uuidv4 } from 'uuid';
 import './App.css';
 import Form from './Form';
-import Bar from './Bar';
+// import Bar from './Bar';
 import Info from './Info';
 
 
