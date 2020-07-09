@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { v4 as  uuidv4 } from 'uuid';
 import './App.css';
 import Form from './Form';
-// import Bar from './Bar';
+import Bar from './Bar';
 import Info from './Info';
 
 
@@ -10,6 +10,17 @@ import Info from './Info';
 const App = () =>{
 
   const [bmis, setBmis] = useState([]);
+  const [data, setData] = useState({});
+
+  useEffect(() =>{
+    const date = bmis.map(obj => obj.date);
+    const bmi = bmis.map(obj => obj.bmi);
+    let newData = {date, bmi};
+    setData(newData);
+  }, [bmis])
+
+
+
 
   function handleBMIchange(val){
     let heightInM = (val.height/100);
@@ -28,8 +39,12 @@ const App = () =>{
 
   return (
     <div>
-      <h1> App </h1>
+      <h1> BMI Calculator </h1>
+      
       <Form addBmi ={ handleBMIchange }/>
+
+      <Bar labelData={data.date} bmiData={data.bmi}/>
+      
       {bmis.length > 0 ? (
         <>
           {bmis.map(bmi => (
