@@ -1,7 +1,7 @@
 # BMI Calculator
 
 # React Counter App
- ![Snapshot](img/grab.png)
+ ![Snapshot](img/bmi.jpg)
 
 ## Live
 https://reactbmicalculator.netlify.app/
