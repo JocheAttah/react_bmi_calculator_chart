@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { v4 as  uuidv4 } from 'uuid';
-import './App.css';
+import './App.scss';
 import Form from './Form';
 import Bar from './Bar';
 import Info from './Info';
@@ -35,33 +35,45 @@ const App = () =>{
     setBmis(newVal)
   }
 
+  function handleDelete(id){
+    let newBmis = bmis.filter(bmi => bmi.id !== id);
+    setBmis(newBmis);
+  }
+
 
 
   return (
-    <div>
-      <h1> BMI Calculator </h1>
+    <div className='App'>
+      <h1 className="App__header"> BMI Calculator </h1>
       
       <Form addBmi ={ handleBMIchange }/>
 
       <Bar labelData={data.date} bmiData={data.bmi}/>
+
+      <div className="App__info" >      
+        {bmis.length > 0 ? (
+          <>
+            {bmis.map(bmi => (
+              <Info 
+                key={bmi.id}
+                id={bmi.id}
+                weight={bmi.weight}
+                height={bmi.height}
+                date={bmi.date}
+                bmi={bmi.bmi}
+                toDelete={handleDelete}
+              />
+            ))}
+          </>
+        ):(
+          <div className="App__noLog"> No Log Found</div>
+        )}
+      </div>
+
+
       
-      {bmis.length > 0 ? (
-        <>
-          {bmis.map(bmi => (
-            <Info 
-              key={bmi.id}
-              id={bmi.id}
-              weight={bmi.weight}
-              height={bmi.height}
-              date={bmi.date}
-              bmi={bmi.bmi}
-            />
-          ))}
-        </>
-      ):(
-        <div> No Log Found</div>
-      )}
     </div>
+
   );
 }
 

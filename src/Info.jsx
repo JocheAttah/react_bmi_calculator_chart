@@ -1,18 +1,23 @@
 import React from 'react';
+import './Info.scss'
 
 
-const Info = ({id, weight,height,date,bmi}) =>{
+const Info = ({id, weight,height,date,bmi,toDelete }) =>{
+
+    const handleDelete = () =>{
+        toDelete(id);
+    }
 
     return (
-        <div>
-            <div className='card'>
-                <span> BMI: {bmi}</span>
-                <div>
+        <div className='Info'>
+            <div className='Info__card'>
+                <span className='Info__heading'> BMI: {bmi}</span>
+                <div className='Info__details'>
                     <span>Weight: {weight} kg</span>
-                    <span>Height: {height} kg</span>
+                    <span>Height: {height} cm</span>
                     <span>Date: {date}</span>
                 </div>
-                <button>X</button>
+                <button onClick={handleDelete} className='Info__delete' >X</button>
             </div>
         </div>
     )

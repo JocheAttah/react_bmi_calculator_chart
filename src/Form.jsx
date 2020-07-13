@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Form.scss'
 
 const initialValues = {
     weight: '',
@@ -41,38 +42,42 @@ const Form = ({addBmi}) =>{
 
 
 
-
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="weight">
-                    Weight (in Kg)
-                    <input type="text"
+        <div className="Form">
+            <form onSubmit={handleSubmit} className="Form__form">
+            <div className="Form__form--fix">
+                <div className="Form__form-group">
+                    <label htmlFor="weight" className="Form__weight-label">
+                        Weight (in Kg)
+                    </label>
+                    <input  className="Form__weight-input"
+                        type="text"
                         name = "weight"
                         min = '1'
                         max = '999'
-                        placeholder = '50'
+                        placeholder = 'Input Weight eg.50'
                         value = {bmi.weight}
                         onChange = {handleChange}
                     />
-                </label>
-            </div>
+                </div>
 
-            <div>
-                <label htmlFor="height">
-                    Height (in cm)                
-                    <input type="text"
+                <div className="Form__form-group">
+                    <label htmlFor="height" className="Form__height-label">
+                        Height (in cm)                
+                    </label>
+                    <input  className="Form__height-input"
+                        type="text"
                         name = "height"
                         min = '1'
                         max = '999'
-                        placeholder = '176'
+                        placeholder = 'Input Height eg. 176'
                         value = {bmi.height}
                         onChange = {handleChange}
                     />
-                </label>
+                    
+                </div>
             </div>
-                <button type='submit' disabled={bmi.weight==='' || bmi.height === ''}>Calculate BMI</button>
+                <button className="Form__button" type='submit' disabled={bmi.weight==='' || bmi.height === ''}>Calculate BMI</button>
             </form>
         </div>
     )
